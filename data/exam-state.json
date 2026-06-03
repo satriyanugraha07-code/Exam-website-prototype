@@ -1,0 +1,71 @@
+{
+  "settings": {
+    "token": "EGUARD",
+    "duration": 60,
+    "maxWarnings": 3,
+    "supervisorPin": "1234",
+    "adminPassword": "admin123",
+    "examId": "",
+    "examStatus": "draft",
+    "examCreatedAt": null,
+    "examStartedAt": null,
+    "examClosedAt": null,
+    "policyAutoSubmitFullscreen": false,
+    "policyShowScoreEnd": true,
+    "policyShuffleQuestions": false,
+    "policyEnableWatermark": true
+  },
+  "questions": [
+    {
+      "text": "Siapakah penemu mesin uap yang memicu terjadinya Revolusi Industri?",
+      "type": "mcq",
+      "points": 20,
+      "options": [
+        "Thomas Alva Edison",
+        "James Watt",
+        "Nikola Tesla",
+        "Albert Einstein"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Planet manakah di tata surya kita yang posisinya paling dekat dengan Matahari?",
+      "type": "mcq",
+      "points": 20,
+      "image": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=500&auto=format&fit=crop",
+      "options": [
+        "Venus",
+        "Merkurius",
+        "Mars",
+        "Yupiter"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Berapakah hasil akhir perhitungan aritmetika berikut: 15 dikalikan 6 dikurangi 20?",
+      "type": "mcq",
+      "points": 20,
+      "options": [
+        "60",
+        "70",
+        "80",
+        "90"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Tuliskan nama ibu kota Negara Kesatuan Republik Indonesia saat ini (Jawaban bersifat case-insensitive, contoh: Jakarta).",
+      "type": "essay",
+      "points": 20,
+      "correct": "jakarta"
+    },
+    {
+      "text": "Dalam tabel periodik kimia dasar, lambang unsur 'H' merupakan representasi dari unsur apa?",
+      "type": "essay",
+      "points": 20,
+      "correct": "hidrogen"
+    }
+  ],
+  "sessions": [],
+  "updatedAt": "2026-05-29T13:17:33.337Z"
+}

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExaGuard - Panel Kontrol Pengawas</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260529-remote1">
+</head>
+<body class="dark-theme">
+
+    <div id="app-root">
+
+        <!-- ==================== VIEW 1: SUPERVISOR LOGIN PASSCODE SCREEN ==================== -->
+        <section id="admin-login-view" class="view-panel active" style="justify-content: center; align-items: center; padding: 24px; min-height: 100vh;">
+            <div class="login-card glass-panel" style="max-width: 440px;">
+                <div class="brand-header">
+                    <div class="brand-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h1>ExaGuard Pro</h1>
+                    <p>Otentikasi Pengawas Ujian</p>
+                </div>
+
+                <form id="admin-login-form" class="form-container">
+                    <div class="form-group">
+                        <label for="admin-password-input">Password Pengawas</label>
+                        <input type="password" id="admin-password-input" placeholder="Masukkan password pengawas" required autocomplete="off" style="text-align: center; letter-spacing: 0.1em; font-size: 1.1rem;">
+                    </div>
+                    <div id="admin-login-error" class="error-text hidden">Password Salah! Akses ditolak.</div>
+                    
+                    <button type="submit" class="btn-primary" style="margin-top: 10px;">
+                        <span>Verifikasi & Masuk</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    <a href="index.html" class="btn-text" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                        <span>Kembali ke Ujian Siswa</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 2: SUPERVISOR DASHBOARD PANEL ==================== -->
+        <section id="admin-view" class="view-panel" style="height: 100vh;">
+            <div class="admin-layout">
+                <!-- Admin Sidebar -->
+                <aside class="admin-sidebar-menu">
+                    <div class="admin-brand">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <h2>Panel Pengawas</h2>
+                    </div>
+
+                    <nav class="admin-nav-links">
+                        <button class="admin-nav-btn active" data-tab="admin-proctoring-tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span>Pantau Live</span>
+                        </button>
+                        <button class="admin-nav-btn" data-tab="admin-questions-tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                            <span>Kelola Soal</span>
+                        </button>
+                        <button class="admin-nav-btn" data-tab="admin-settings-tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            <span>Pengaturan</span>
+                        </button>
+                        <button class="admin-nav-btn" data-tab="admin-results-tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            <span>Daftar Nilai</span>
+                        </button>
+                    </nav>
+
+                    <div class="admin-sidebar-footer">
+                        <button id="admin-logout-btn" class="btn-danger-outline">Keluar Panel</button>
+                    </div>
+                </aside>
+
+                <!-- Admin Main Content Area -->
+                <main class="admin-main-viewport">
+                    <header class="admin-topbar glass-panel">
+                        <div class="topbar-title-section">
+                            <h1 id="admin-current-view-title">Pemantauan Live Siswa</h1>
+                        </div>
+                        <div class="topbar-actions">
+                            <div class="token-showcase">
+                                <span>Token Aktif:</span>
+                                <strong id="admin-token-indicator" class="text-primary">EGUARD</strong>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- TAB 1: LIVE PROCTORING MONITOR -->
+                    <div id="admin-proctoring-tab" class="admin-tab-content active">
+                        <div class="exam-control-panel glass-panel">
+                            <div class="exam-control-info">
+                                <div class="exam-control-title-row">
+                                    <h2>Kontrol Link & Mulai Ujian</h2>
+                                    <span class="badge muted" id="exam-status-badge">Belum dibuat</span>
+                                </div>
+                                <p id="exam-control-description">Buat link ujian terlebih dahulu, bagikan ke siswa, lalu tekan Start saat ujian boleh dimulai.</p>
+                                <div class="exam-link-row">
+                                    <input type="text" id="exam-link-output" readonly placeholder="Link ujian akan muncul di sini setelah dibuat">
+                                    <button id="copy-exam-link-btn" class="btn-secondary-outline" type="button">Copy Link</button>
+                                </div>
+                            </div>
+                            <div class="exam-control-actions">
+                                <button id="create-exam-link-btn" class="btn-secondary-outline" type="button">Buat Link Ujian</button>
+                                <button id="start-exam-session-btn" class="btn-success" type="button">Start Ujian</button>
+                                <button id="close-exam-session-btn" class="btn-danger-outline" type="button">Tutup Ujian</button>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card glass-panel">
+                                <div class="stat-icon text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Total Peserta Ujian</span>
+                                    <strong id="stat-total-students" class="stat-val">0</strong>
+                                </div>
+                            </div>
+                            <div class="stat-card glass-panel">
+                                <div class="stat-icon text-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Sudah Selesai</span>
+                                    <strong id="stat-completed-students" class="stat-val">0</strong>
+                                </div>
+                            </div>
+                            <div class="stat-card glass-panel">
+                                <div class="stat-icon text-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Sedang Terkunci</span>
+                                    <strong id="stat-locked-students" class="stat-val">0</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-container glass-panel">
+                            <div class="table-header-bar">
+                                <h2>Daftar Aktivitas Real-Time Siswa</h2>
+                                <span class="refresh-indicator">Update otomatis tiap detik</span>
+                            </div>
+                            <table id="proctoring-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Siswa</th>
+                                        <th>NIS</th>
+                                        <th>Status Ujian</th>
+                                        <th>Progress Soal</th>
+                                        <th>Jumlah Peringatan</th>
+                                        <th>Riwayat Kejadian Terakhir</th>
+                                        <th>Aksi Pengawas</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="proctoring-table-body">
+                                    <tr>
+                                        <td colspan="7" class="text-center text-muted">Belum ada siswa yang bergabung ke ujian.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: QUESTIONS MANAGER -->
+                    <div id="admin-questions-tab" class="admin-tab-content">
+                        <div class="question-manager-header glass-panel">
+                            <div class="left-actions">
+                                <h2>Daftar Soal Ujian (<span id="admin-total-questions-tag">0</span> Soal)</h2>
+                            </div>
+                            <div class="right-actions" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                                <a href="template_soal_quizizz.xlsx?v=20260529-remote1" download="template_soal_quizizz.xlsx" class="btn-secondary-outline" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; font-size: 0.9rem;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    <span>Unduh Template Excel</span>
+                                </a>
+                                <button id="import-questions-btn" class="btn-secondary-outline" style="display: inline-flex; align-items: center; gap: 6px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span>Import JSON / CSV / Excel</span>
+                                </button>
+                                <button id="export-questions-btn" class="btn-secondary-outline">Export JSON</button>
+                                <button id="add-new-question-btn" class="btn-primary">+ Tambah Soal Baru</button>
+                                <input type="file" id="question-file-input" class="hidden" accept=".json,.csv,.xlsx,.xls">
+                            </div>
+                        </div>
+
+                        <!-- Fitur Atur Seluruh Poin Sekaligus -->
+                        <div class="bulk-actions-panel glass-panel" style="margin-top: 14px; margin-bottom: 14px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="display: inline-flex; padding: 8px; background: rgba(99, 102, 241, 0.15); border-radius: var(--radius-sm); color: var(--primary);">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 0.95rem; font-weight: 700; margin: 0;">Atur Seluruh Poin Soal</h4>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0 0;">Ubah bobot nilai poin untuk semua pertanyaan yang ada di bank soal saat ini sekaligus.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <input type="number" id="bulk-points-input" min="1" max="1000" value="10" style="width: 80px; padding: 8px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-main); font-weight: bold; text-align: center;">
+                                <button id="apply-bulk-points-btn" class="btn-primary" style="padding: 8px 16px; font-size: 0.88rem;">Atur Semua Poin</button>
+                            </div>
+                        </div>
+
+                        <!-- Form Tambah/Edit Soal (Tersembunyi secara default) -->
+                        <div id="question-form-panel" class="question-form-card glass-panel hidden">
+                            <h3 id="question-form-title">Tambah Soal Baru</h3>
+                            <form id="question-editor-form">
+                                <input type="hidden" id="edit-question-index">
+                                <div class="form-group">
+                                    <label for="question-text">Teks Pertanyaan</label>
+                                    <textarea id="question-text" rows="4" placeholder="Ketik pertanyaan di sini..." required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Gambar Pendukung Soal (Opsional)</label>
+                                    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                                        <input type="file" id="question-image-file" accept="image/*" style="display: none;">
+                                        <button type="button" id="upload-image-trigger-btn" class="btn-secondary" style="padding: 8px 14px; font-size: 0.85rem;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                            <span>Unggah Gambar Komputer</span>
+                                        </button>
+                                        <button type="button" id="clear-uploaded-image-btn" class="btn-danger-outline hidden" style="padding: 8px 14px; font-size: 0.85rem;">Hapus Gambar</button>
+                                    </div>
+                                    <!-- Hidden input to store base64 string -->
+                                    <input type="hidden" id="question-image-base64">
+                                    
+                                    <!-- Image Preview Thumbnail -->
+                                    <div id="form-image-preview-box" class="hidden" style="margin-top: 10px;">
+                                        <img id="form-image-preview" src="" alt="Pratinjau Unggahan" style="max-height: 100px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); object-fit: contain;">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="question-points-input">Poin Soal</label>
+                                        <input type="number" id="question-points-input" min="1" value="10" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="question-time-input">Timer Soal (Detik)</label>
+                                        <input type="number" id="question-time-input" min="0" placeholder="Kosong = ikut durasi ujian">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="question-type">Tipe Pertanyaan</label>
+                                        <select id="question-type">
+                                            <option value="mcq">Pilihan Ganda (Multiple Choice)</option>
+                                            <option value="essay">Isian Singkat (Short Essay)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="mcq-options-form-block">
+                                    <label>Pilihan Jawaban & Tentukan Jawaban Benar:</label>
+                                    <div class="mcq-option-row">
+                                        <input type="radio" name="correct-option-radio" value="0" checked>
+                                        <input type="text" class="mcq-option-input" placeholder="Pilihan A" required>
+                                    </div>
+                                    <div class="mcq-option-row">
+                                        <input type="radio" name="correct-option-radio" value="1">
+                                        <input type="text" class="mcq-option-input" placeholder="Pilihan B" required>
+                                    </div>
+                                    <div class="mcq-option-row">
+                                        <input type="radio" name="correct-option-radio" value="2">
+                                        <input type="text" class="mcq-option-input" placeholder="Pilihan C" required>
+                                    </div>
+                                    <div class="mcq-option-row">
+                                        <input type="radio" name="correct-option-radio" value="3">
+                                        <input type="text" class="mcq-option-input" placeholder="Pilihan D" required>
+                                    </div>
+                                    <div class="mcq-option-row">
+                                        <input type="radio" name="correct-option-radio" value="4">
+                                        <input type="text" class="mcq-option-input" placeholder="Pilihan E (Opsional)" data-optional="true">
+                                    </div>
+                                </div>
+
+                                <div id="essay-answer-form-block" class="hidden">
+                                    <div class="form-group">
+                                        <label for="essay-correct-answer">Kunci Jawaban Tepat (Case Insensitive)</label>
+                                        <input type="text" id="essay-correct-answer" placeholder="Masukkan kata kunci jawaban benar">
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" id="cancel-question-btn" class="btn-secondary">Batal</button>
+                                    <button type="submit" class="btn-primary">Simpan Soal</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Daftar Soal Grid -->
+                        <div class="questions-list-grid" id="admin-questions-list">
+                            <!-- Question cards populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: EXAM SETTINGS -->
+                    <div id="admin-settings-tab" class="admin-tab-content">
+                        <div class="settings-grid">
+                            <!-- Secure Configurations -->
+                            <div class="settings-card glass-panel">
+                                <h3>Konfigurasi Dasar Ujian</h3>
+                                <form id="settings-basic-form">
+                                    <div class="form-group">
+                                        <label for="set-exam-duration">Durasi Ujian (Menit)</label>
+                                        <input type="number" id="set-exam-duration" min="1" value="60" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="set-max-warnings">Batas Peringatan Kecurangan Maksimal</label>
+                                        <input type="number" id="set-max-warnings" min="1" max="10" value="3" required>
+                                        <small class="form-tip">Siswa akan otomatis dikumpulkan ujiannya jika melanggar melebihi angka ini.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="set-exam-token">Token Akses Ujian</label>
+                                        <input type="text" id="set-exam-token" minlength="4" maxlength="10" value="EGUARD" style="text-transform: uppercase;" required>
+                                    </div>
+                                    <button type="submit" class="btn-primary">Simpan Konfigurasi</button>
+                                </form>
+                            </div>
+
+                            <!-- Dashboard & Security Policies -->
+                            <div class="settings-card glass-panel">
+                                <h3>Kebijakan Keamanan Tambahan</h3>
+                                <div class="policy-settings-list">
+                                    <div class="policy-row">
+                                        <div class="policy-info">
+                                            <h4>Auto-Submit Jika Keluar Fullscreen</h4>
+                                            <p>Mengumpulkan ujian langsung saat siswa pertama kali keluar dari mode layar penuh (tidak menggunakan dialog PIN Pengawas).</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" id="policy-auto-submit-fullscreen">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="policy-row">
+                                        <div class="policy-info">
+                                            <h4>Perbolehkan Siswa Melihat Skor Akhir</h4>
+                                            <p>Menampilkan nilai akhir dan hasil analisis pengerjaan ujian siswa ketika mereka selesai mengumpulkan.</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" id="policy-show-score-end" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="policy-row">
+                                        <div class="policy-info">
+                                            <h4>Acak Urutan Soal Ujian</h4>
+                                            <p>Mengacak nomor urut pertanyaan bagi setiap siswa saat memulai sesi ujian.</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" id="policy-shuffle-questions">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="policy-row">
+                                        <div class="policy-info">
+                                            <h4>Gunakan Tanda Air Pengaman (Watermark)</h4>
+                                            <p>Menampilkan watermark transparan berulang (Nama & NIS Siswa) di atas lembar soal ujian.</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" id="policy-enable-watermark" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: RESULTS TABLE & GRADES -->
+                    <div id="admin-results-tab" class="admin-tab-content">
+                        <div class="results-actions-header glass-panel">
+                            <div>
+                                <h2>Rekapitulasi Nilai Akhir Siswa</h2>
+                                <p>Data diurutkan berdasarkan nama siswa agar mudah dicek guru.</p>
+                            </div>
+                            <div class="action-buttons">
+                                <button id="clear-all-data-btn" class="btn-danger-outline">Reset Semua Sesi & Data Ujian</button>
+                                <button id="export-results-excel-btn" class="btn-success">Download Rekap Excel</button>
+                            </div>
+                        </div>
+
+                        <div class="results-summary-cards" id="results-summary-cards"></div>
+
+                        <div class="table-container glass-panel">
+                            <table id="results-summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama / NIS</th>
+                                        <th>Status Submit</th>
+                                        <th>Nilai</th>
+                                        <th>Poin</th>
+                                        <th>Progress</th>
+                                        <th>Waktu</th>
+                                        <th>Peringatan</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="results-table-body">
+                                    <tr>
+                                        <td colspan="9" class="text-center text-muted">Belum ada data pengerjaan ujian yang terkumpul.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Supervisor Specific Logic JS -->
+    <script src="xlsx.full.min.js?v=20260529-remote1"></script>
+    <script src="exceljs.min.js?v=20260529-remote1"></script>
+    <script src="admin_app.js?v=20260529-remote1"></script>
+</body>
+</html>

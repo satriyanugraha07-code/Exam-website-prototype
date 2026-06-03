@@ -1,0 +1,17 @@
+{
+  "name": "buat-web-ujian-gratis",
+  "version": "1.0.0",
+  "description": "Web ujian online dengan admin, link ujian, start gate, submit siswa, dan rekap Excel.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check api-handler.js && node --check storage.js && node --check api/[...path].js && node --check api/_route.js && node --check api/health.js && node --check api/state.js && node --check api/sessions.js && node --check api/bootstrap.js && node --check api/settings.js && node --check api/questions.js && node --check api/sessions/upsert.js && node --check api/sessions/clear.js && node --check app.js && node --check admin_app.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}
